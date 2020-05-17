@@ -130,10 +130,24 @@ $.ajax({
                 //display icon in fcIcon image in div
                 $("#fcIcon").attr("src", fciconURL);
 
+                //variable to hold temperature and math to F it
+                var fcTemp = (p.list[forecastArray].main.temp - 273.15) * 1.80 + 32;
+                //create tag to hold temp and round 2 decimals and add degree symbol
+                var fcTempDisp = $("<p class = 'title is-6'>").text("Temperature: " + fcTemp.toFixed(2) + "°" + " F");
+                //append temperature to forecast tiles
+                (forecastTiles).append(fcTempDisp);
+
+                //variable to hold forecasted humidity
+                var fcHumid = p.list[forecastArray].main.humidity;
+                //create tag to hold humidity
+                var fcHumidDisp = $("<p class = 'title is-6'>").text("Humidity: " + fcHumid + "%");
+                //append humidity to forecast tiles
+                forecastTiles.append(fcHumidDisp);
 
 
 
             }
+
         });
 
     });
