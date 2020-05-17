@@ -4,11 +4,22 @@ let m = moment();
 var dayDate = m.format('MMMM Do YYYY');
 $("#dateDisplay").text(dayDate);
 
+//variable to store city name 
+var cityName = "Worcester";
+
+//function to get user typed in city search
+function cityInput() {
+    cityName = document.getElementById("userInput").value;
+}
+//event listener for search button 
+$("#citySearch").on("click", function (e) {
+    e.preventDefault();
+
+
+});
+
 //API key
 var apiKey = "64f6bcb2d437b01524b076e349c2d893";
-
-//variable to store city name 
-var cityName = "Boston";
 
 //url we need to query to request the weather summary data for city
 var summaryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey;
@@ -18,7 +29,7 @@ var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityNa
 
 
 
-//function that runs ajax call for weather for city
+//function that runs ajax call for weather summary for city
 $.ajax({
 
     url: summaryURL,
@@ -101,9 +112,9 @@ $.ajax({
             var forecastArray = 0;
 
             //for loop to iterate through array and grab the indices that are noon time for 5 subsequent days
-            for (forecastArray = 3; forecastArray < 36; forecastArray += 8) {
+            for (forecastArray = 2; forecastArray < 35; forecastArray += 8) {
                 //console.log(p.list[forecastArray].main.temp);
-                console.log(p.list[forecastArray]);
+                //console.log(p.list[forecastArray]);
 
                 //variable to get the date for each day
                 var weathDate = p.list[forecastArray].dt_txt;
@@ -124,18 +135,18 @@ $.ajax({
                 //url for the weather icon fc=forecast
                 var fciconURL = "http://openweathermap.org/img/w/" + forecasticonCode + ".png";
                 //create icon img div
-                var fcIconDisp = $("<div class = 'fivedayIcon'><img id='fcIcon' src = '' alt = 'weather icon'>");
+                var fcIconDisp = $("<div class = 'fivedayIcon'><img class='fcIcon' src = '' alt = 'weather icon'>");
                 //append div to forecastTiles
-                (forecastTiles).append(fcIconDisp);
+                forecastTiles.append(fcIconDisp);
                 //display icon in fcIcon image in div
-                $("#fcIcon").attr("src", fciconURL);
+                $(".fcIcon").attr("src", fciconURL);
 
                 //variable to hold temperature and math to F it
                 var fcTemp = (p.list[forecastArray].main.temp - 273.15) * 1.80 + 32;
                 //create tag to hold temp and round 2 decimals and add degree symbol
                 var fcTempDisp = $("<p class = 'title is-6'>").text("Temperature: " + fcTemp.toFixed(2) + "°" + " F");
                 //append temperature to forecast tiles
-                (forecastTiles).append(fcTempDisp);
+                forecastTiles.append(fcTempDisp);
 
                 //variable to hold forecasted humidity
                 var fcHumid = p.list[forecastArray].main.humidity;

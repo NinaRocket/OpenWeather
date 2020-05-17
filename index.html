@@ -29,10 +29,11 @@
                         <p class="subtitle">Search for a city: </p>
                         <div class="field has-addons">
                             <div class="control">
-                                <input class="input" type="text" placeholder="Search city">
+                                <input class="input" id="userInput" type="text" oninput="cityInput()"
+                                    placeholder="Search city">
                             </div>
                             <div class="control">
-                                <a class="button is-info">
+                                <a class="button is-info" id="citySearch">
                                     Search
                                 </a>
                             </div>
