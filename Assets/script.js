@@ -5,7 +5,7 @@ var dayDate = m.format('MMMM Do YYYY');
 $("#dateDisplay").text(dayDate);
 
 //variable to store city name 
-var cityName = "Worcester";
+var cityName = "Honolulu";
 
 //function to get user typed in city search
 function cityInput() {
@@ -134,12 +134,14 @@ $.ajax({
                 console.log(forecasticonCode);
                 //url for the weather icon fc=forecast
                 var fciconURL = "http://openweathermap.org/img/w/" + forecasticonCode + ".png";
+                console.log(fciconURL);
                 //create icon img div
                 var fcIconDisp = $("<div class = 'fivedayIcon'><img class='fcIcon' src = '' alt = 'weather icon'>");
-                //append div to forecastTiles
-                forecastTiles.append(fcIconDisp);
                 //display icon in fcIcon image in div
                 $(".fcIcon").attr("src", fciconURL);
+
+                //append div to forecastTiles
+                forecastTiles.append(fcIconDisp);
 
                 //variable to hold temperature and math to F it
                 var fcTemp = (p.list[forecastArray].main.temp - 273.15) * 1.80 + 32;
