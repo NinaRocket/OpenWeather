@@ -1,0 +1,20 @@
+a.navbar-item {
+    color: #FAFAFF;
+    text-align: center;
+  }
+
+  body { 
+    padding-top: 75px; 
+    margin: auto;
+
+}
+
+/* .container{
+    display: inline-flex;
+    margin-top: 50px;
+    margin-left: 250px;
+ 
+} */
+.tile.is-ancestor{
+    margin: auto; 
+}

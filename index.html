@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+    <link rel="stylesheet" href="Assets/style.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+</head>
+<nav class="navbar is-fixed-top has-shadow is-primary" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <!-- change later -->
+        <a class="navbar-center navbar-item" href="#">
+            <div class="navbar-item title ">Weather Dashboard</div>
+        </a>
+</nav>
+
+<body>
+
+    <section class="tile columns is-ancestor">
+        <div class="tile column is-vertical">
+            <div class="tile">
+                <div class="tile is-parent is-vertical">
+                    <!-- tile to search for a city -->
+                    <article class="tile is-child notification is-success">
+                        <p class="subtitle">Search for a city: </p>
+                        <div class="field has-addons">
+                            <div class="control">
+                                <input class="input" type="text" placeholder="Search city">
+                            </div>
+                            <div class="control">
+                                <a class="button is-info">
+                                    Search
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- tile for the cities  -->
+                    <article class="tile is-child notification is-tall is-warning">
+                        <p class="title">Cities</p>
+                        <p class="subtitle">store saved cities</p>
+                    </article>
+                </div>
+                <!-- blue tile for the overall weather summary  -->
+                <div class="tile is-child columns is-wide">
+                    <article class="tile is-child column notification is-info">
+
+                        <p class="title is-4" id="currentCity"></p>
+                        <p class="title is-6" id="dateDisplay"></p>
+                        <div class="icon"><img id="wIcon" src="" alt="Weather icon"></div>
+                        <p class="title is-6" id="temp"></p>
+                        <p class="title is-6" id="humidity"></p>
+                        <p class="title is-6" id="windSpeed"></p>
+                        <p class="title is-6" id="uv-index"></p>
+
+
+                    </article>
+                </div>
+            </div>
+    </section>
+
+
+    <!-- 5 day forecast display -->
+    <section class="container columns" id="forecast">
+
+        </div>
+        <div class="column">
+            <h3 class="title is-3 is-vertical">5 Day Forecast</h3>
+        </div>
+
+        <div class="forecast tile is-parent">
+            <article class="tile is-child box">
+                <p class="title" id=#forecast-dates></p>
+                <div class="icon"><img id="w1Icon" src="" alt="Weather icon"></div>
+                <p class="subtitle">Subtitle</p>
+            </article>
+        </div>
+        <!-- <div class="tile is-parent">
+            <article class="tile is-child box">
+                <p class="title">Two</p>
+                <div class="icon"><img id="w2Icon" src="" alt="Weather icon"></div>
+                <p class="subtitle">Subtitle</p>
+            </article>
+        </div>
+        <div class="tile is-parent">
+            <article class="tile is-child box">
+                <p class="title">Three</p>
+                <div class="icon"><img id="w3Icon" src="" alt="Weather icon"></div>
+                <p class="subtitle">Subtitle</p>
+            </article>
+        </div>
+        <div class="tile is-parent">
+            <article class="tile is-child box">
+                <p class="title">Four</p>
+                <div class="icon"><img id="w4Icon" src="" alt="Weather icon"></div>
+                <p class="subtitle">Subtitle</p>
+            </article>
+        </div>
+        <div class="tile is-parent">
+            <article class="tile is-child box">
+                <p class="title">Five</p>
+                <div class="icon"><img id="w5Icon" src="" alt="Weather icon"></div>
+                <p class="subtitle">Subtitle</p>
+            </article>
+        </div> -->
+        </div>
+    </section>
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="Assets/moment.min.js"></script>
+    <script src="Assets/script.js"></script>
+</body>
+
+</html>
