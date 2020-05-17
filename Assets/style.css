@@ -9,15 +9,13 @@ a.navbar-item {
 
 }
 
-/* .container{
-    display: inline-flex;
-    margin-top: 50px;
-    margin-left: 250px;
- 
-} */
 .tile.is-ancestor{
     margin: auto; 
 }
 #forecast{
     margin: auto; 
+}
+
+.li{
+    padding-bottom: 5px; 
 }
