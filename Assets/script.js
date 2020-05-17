@@ -8,7 +8,7 @@ $("#dateDisplay").text(dayDate);
 var apiKey = "64f6bcb2d437b01524b076e349c2d893";
 
 //variable to store city name 
-var cityName = "Phoenix";
+var cityName = "Boston";
 
 //url we need to query to request the weather summary data for city
 var summaryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey;
@@ -102,14 +102,35 @@ $.ajax({
 
             //for loop to iterate through array and grab the indices that are noon time for 5 subsequent days
             for (forecastArray = 3; forecastArray < 36; forecastArray += 8) {
-                console.log(p.list[forecastArray].main.temp);
-                console.log(forecastArray);
+                //console.log(p.list[forecastArray].main.temp);
+                console.log(p.list[forecastArray]);
 
                 //variable to get the date for each day
                 var weathDate = p.list[forecastArray].dt_txt;
-                //dynamically create tile to display forecast information
-                var forecastTiles = $("<div class = 'forecast tile is-parent'>");
-                //add dates to forecast tiles
+                console.log(weathDate);
+
+                //variable to target div in html
+                var forecastTiles = $("#forecastDisplay");
+                //create p tag for date
+                var dateTag = $("<p class = 'title is-6'>").text(weathDate);
+                //append the date to the tiles
+                (forecastTiles).append(dateTag);
+
+
+                //variable to target array
+                //variable for weather icon
+                var forecasticonCode = p.list[forecastArray].weather[0].icon;
+                console.log(forecasticonCode);
+                //url for the weather icon fc=forecast
+                var fciconURL = "http://openweathermap.org/img/w/" + forecasticonCode + ".png";
+                //create icon img div
+                var fcIconDisp = $("<div class = 'fivedayIcon'><img id='fcIcon' src = '' alt = 'weather icon'>");
+                //append div to forecastTiles
+                (forecastTiles).append(fcIconDisp);
+                //display icon in fcIcon image in div
+                $("#fcIcon").attr("src", fciconURL);
+
+
 
 
             }
