@@ -5,18 +5,19 @@ var dayDate = m.format('MMMM Do YYYY');
 $("#dateDisplay").text(dayDate);
 
 //variable to store city name 
-var cityName = "Honolulu";
+var cityName = "Boston";
 
 //function to get user typed in city search
-function cityInput() {
-    cityName = document.getElementById("userInput").value;
-}
-//event listener for search button 
-$("#citySearch").on("click", function (e) {
-    e.preventDefault();
+// function cityInput() {
+//     cityName = document.getElementById("userInput").value;
+// }
+// //event listener for search button 
+// $("#citySearch").on("click", function (e) {
+//     e.preventDefault();
+//     //cityInput();
+//     weatherUpdate(cityName);
 
-
-});
+// });
 
 //API key
 var apiKey = "64f6bcb2d437b01524b076e349c2d893";
@@ -106,29 +107,28 @@ $.ajax({
             method: "GET"
         }).then(function (p) {
 
-            console.log(p);
-            console.log(p.list[0].main.temp);
             //variable for the array index
             var forecastArray = 0;
 
             //for loop to iterate through array and grab the indices that are noon time for 5 subsequent days
             for (forecastArray = 2; forecastArray < 35; forecastArray += 8) {
-                //console.log(p.list[forecastArray].main.temp);
-                //console.log(p.list[forecastArray]);
 
                 //variable to get the date for each day
                 var weathDate = p.list[forecastArray].dt_txt;
                 console.log(weathDate);
 
                 //variable to target div in html
-                var forecastTiles = $("#forecastDisplay");
+                var forecastTiles = $("#forecast");
+                // variable for div to append to forecastDisplay
+                var fcParent = $("<div class = 'tile is-parent'>");
+                //create article tag
+                var fcArticle = $("<article class = 'tile is-child box'>");
+
                 //create p tag for date
                 var dateTag = $("<p class = 'title is-6'>").text(weathDate);
                 //append the date to the tiles
-                (forecastTiles).append(dateTag);
+                (fcArticle).append(dateTag);
 
-
-                //variable to target array
                 //variable for weather icon
                 var forecasticonCode = p.list[forecastArray].weather[0].icon;
                 console.log(forecasticonCode);
@@ -136,34 +136,35 @@ $.ajax({
                 var fciconURL = "http://openweathermap.org/img/w/" + forecasticonCode + ".png";
                 console.log(fciconURL);
                 //create icon img div
-                var fcIconDisp = $("<div class = 'fivedayIcon'><img class='fcIcon' src = '' alt = 'weather icon'>");
-                //display icon in fcIcon image in div
-                $(".fcIcon").attr("src", fciconURL);
+                var fcIconDisp = $("<div class = 'fivedayIcon'><img class='fcIcon' src = " + fciconURL + " alt = 'weather icon'>");
+                //append div to forecast article
+                fcArticle.append(fcIconDisp);
 
-                //append div to forecastTiles
-                forecastTiles.append(fcIconDisp);
 
                 //variable to hold temperature and math to F it
                 var fcTemp = (p.list[forecastArray].main.temp - 273.15) * 1.80 + 32;
                 //create tag to hold temp and round 2 decimals and add degree symbol
-                var fcTempDisp = $("<p class = 'title is-6'>").text("Temperature: " + fcTemp.toFixed(2) + "°" + " F");
+                var fcTempDisp = $("<p>").text("Temperature: " + fcTemp.toFixed(2) + "°" + " F");
                 //append temperature to forecast tiles
-                forecastTiles.append(fcTempDisp);
+                fcArticle.append(fcTempDisp);
 
                 //variable to hold forecasted humidity
                 var fcHumid = p.list[forecastArray].main.humidity;
                 //create tag to hold humidity
-                var fcHumidDisp = $("<p class = 'title is-6'>").text("Humidity: " + fcHumid + "%");
+                var fcHumidDisp = $("<p>").text("Humidity: " + fcHumid + "%");
                 //append humidity to forecast tiles
-                forecastTiles.append(fcHumidDisp);
+                fcArticle.append(fcHumidDisp);
 
 
+                fcParent.append(fcArticle);
+                forecastTiles.append(fcParent);
 
             }
 
         });
 
     });
+
 
 
 
