@@ -5,34 +5,33 @@ var dayDate = m.format('MMMM Do YYYY');
 $("#dateDisplay").text(dayDate);
 
 //variable to store city name 
-var cityName = "";
+//var cityName = "";
 
 //variable for saving cities in an array
 var cityArray = [];
+getCities();
 
 //dynamically creating list of cities for stored cities to display in
 function renderCityList() {
 
-    $("#cityList").innerHTML = "";
+    //$("#cityList").innerHTML = "";
 
     //create a list element for the cityArray to display
     for (var i = 0; i < cityArray.length; i++) {
         //variable for array position
         var citList = cityArray[i];
 
-        //dynamically create list for cities
+        //dynamically create list for cities with a data-index
         var li = $("<li style = 'padding-bottom: 5px;'>").attr("data-index", i);
 
-        //dynamically create buttons
-        var button = $("<button class = 'button is-rounded is-danger'>");
-        button.text(citList);
+        //dynamically create buttons and text is the city name
+        var button = $("<button class = 'button is-rounded is-danger'>").text(citList);
 
         //append a button on the list item
         li.append(button);
         $("#cityList").append(li);
 
-    }
-
+    };
 };
 
 //function to get stored cities from localStorage
@@ -43,9 +42,14 @@ function getCities() {
     if (storedCities !== null) {
         cityArray = storedCities;
     }
+    //render array to the dom
     renderCityList();
 };
-console.log(cityArray);
+//function to store user inputted city name in local storage
+function storeCityName() {
+    //stringify and set "cityArray" key in localStorage to cityArray array
+    localStorage.setItem("cityArray", JSON.stringify(cityArray));
+}
 
 //function to get user typed in city search
 function cityInput() {
@@ -59,30 +63,30 @@ function clear() {
 //event listener for search button 
 $("#citySearch").on("click", function (e) {
     e.preventDefault();
+    cityInput();
+    // Return from function early if submitted todoText is blank
+    if (cityName === "") {
+        return;
+    }
+    //clear();
+    //hid hard-coded icon, when user presses search all unhides
+    $(".summaryIcon").removeClass("is-hidden");
 
-    //creating variable to pu   
-    var cityText = cityName;
+
     //pushing the city names into the array to store
-    cityArray.push(cityText);
+    cityArray.push(cityName);
+    //cityName = "";
+
     //calling the function to displayWeather and run ajax calls
     displayWeather(cityName);
 
     //calling the function that stores cities into localStorage 
     storeCityName();
-    //hid hard-coded icon, when user presses search all unhides
-    $(".summaryIcon").removeClass("is-hidden");
-
-    clear();
-    storeCityName();
+    //invoking the function that renders the button list
     renderCityList();
 
-
 });
-//function to store user inputted city name in local storage
-function storeCityName() {
-    //stringify and set "cityArray" key in localStorage to cityArray
-    localStorage.setItem("cityArray", JSON.stringify(cityArray));
-}
+
 function displayWeather(cityName) {
     //API key
     var apiKey = "64f6bcb2d437b01524b076e349c2d893";
@@ -236,12 +240,10 @@ function displayWeather(cityName) {
                         //append humidity to forecast tiles
                         fcArticle.append(fcHumidDisp);
 
-
                         fcParent.append(fcArticle);
                         forecastTiles.append(fcParent);
 
                     }
-
 
                 });
             }
