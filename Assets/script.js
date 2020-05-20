@@ -4,8 +4,6 @@ let m = moment();
 var dayDate = m.format('MMMM Do YYYY');
 $("#dateDisplay").text(dayDate);
 
-//variable to store city name 
-//var cityName = "";
 
 //variable for saving cities in an array
 var cityArray = [];
@@ -14,18 +12,18 @@ getCities();
 //dynamically creating list of cities for stored cities to display in
 function renderCityList() {
 
-    //$("#cityList").innerHTML = "";
+    $("#cityList").empty();
 
     //create a list element for the cityArray to display
     for (var i = 0; i < cityArray.length; i++) {
         //variable for array position
-        var citList = cityArray[i];
+        var cityPos = cityArray[i];
 
         //dynamically create list for cities with a data-index
         var li = $("<li style = 'padding-bottom: 5px;'>").attr("data-index", i);
 
         //dynamically create buttons and text is the city name
-        var button = $("<button class = 'button is-rounded is-danger'>").text(citList);
+        var button = $("<button class = 'button cityBtn is-rounded is-danger'>").text(cityPos);
 
         //append a button on the list item
         li.append(button);
@@ -63,6 +61,7 @@ function clear() {
 //event listener for search button 
 $("#citySearch").on("click", function (e) {
     e.preventDefault();
+    clear();
     cityInput();
     // Return from function early if submitted todoText is blank
     if (cityName === "") {
@@ -72,10 +71,8 @@ $("#citySearch").on("click", function (e) {
     //hid hard-coded icon, when user presses search all unhides
     $(".summaryIcon").removeClass("is-hidden");
 
-
     //pushing the city names into the array to store
     cityArray.push(cityName);
-    //cityName = "";
 
     //calling the function to displayWeather and run ajax calls
     displayWeather(cityName);
@@ -84,8 +81,22 @@ $("#citySearch").on("click", function (e) {
     storeCityName();
     //invoking the function that renders the button list
     renderCityList();
+    //keeping this funciton active after user adds a new city
+    retrieveCityWeather();
 
 });
+//event listener for saved city buttons
+function retrieveCityWeather() {
+    $(".cityBtn").on("click", function (event) {
+        event.preventDefault();
+        //variable that holds city text displayed on btn
+        wordCity = this.innerHTML;
+        //passing that city to the displayWeather function
+        displayWeather(wordCity);
+
+    })
+};
+
 
 function displayWeather(cityName) {
     //API key
@@ -109,7 +120,7 @@ function displayWeather(cityName) {
 
         //object response stores retrieved data
         .then(function (response) {
-            console.log(response);
+
             //city displayed in weather summary tile
             $("#currentCity").text(cityName);
             //variable to store icon code
@@ -144,7 +155,7 @@ function displayWeather(cityName) {
                 url: uvURL,
                 method: "GET"
             }).then(function (r) {
-                console.log(r);
+
                 //variable for the ultraviolet index
                 var uvIndex = r.value;
                 //statements to determine favorability of UV index conditions
@@ -193,14 +204,12 @@ function displayWeather(cityName) {
                     $("#forecast").empty();
                     //variable for the array index
                     var forecastArray = 0;
-                    console.log(forecastURL);
+
                     //for loop to iterate through array and grab the indices that are noon time for 5 subsequent days
                     for (forecastArray = 2; forecastArray < 35; forecastArray += 8) {
 
                         //variable to get the date for each day
                         var weathDate = p.list[forecastArray].dt_txt;
-                        console.log(weathDate);
-
 
                         //variable to target div in html
                         var forecastTiles = $("#forecast");
@@ -216,10 +225,10 @@ function displayWeather(cityName) {
 
                         //variable for weather icon
                         var forecasticonCode = p.list[forecastArray].weather[0].icon;
-                        console.log(forecasticonCode);
+
                         //url for the weather icon fc=forecast
                         var fciconURL = "http://openweathermap.org/img/w/" + forecasticonCode + ".png";
-                        console.log(fciconURL);
+
                         //create icon img div
                         var fcIconDisp = $("<div class = 'fivedayIcon'><img class='fcIcon' src = " + fciconURL + " alt = 'weather icon'>");
                         //append div to forecast article
@@ -250,4 +259,4 @@ function displayWeather(cityName) {
         });
 };
 
-
+retrieveCityWeather(); 
