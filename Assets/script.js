@@ -53,16 +53,13 @@ function storeCityName() {
 function cityInput() {
     cityName = document.getElementById("userInput").value;
 }
-function clear() {
-    $("#userInput").empty();
-    //$("#userInput").trigger("reset");
-}
 
 //event listener for search button 
 $("#citySearch").on("click", function (e) {
     e.preventDefault();
-    clear();
+    //gets-passes the city name from cityInput function
     cityInput();
+
     // Return from function early if submitted todoText is blank
     if (cityName === "") {
         return;
@@ -83,6 +80,8 @@ $("#citySearch").on("click", function (e) {
     renderCityList();
     //keeping this funciton active after user adds a new city
     retrieveCityWeather();
+    //clears the text box after user hits search
+    $("#userInput").val('');
 
 });
 //event listener for saved city buttons
