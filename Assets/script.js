@@ -64,7 +64,7 @@ $("#citySearch").on("click", function (e) {
     if (cityName === "") {
         return;
     }
-    //clear();
+
     //hid hard-coded icon, when user presses search all unhides
     $(".summaryIcon").removeClass("is-hidden");
 
@@ -73,7 +73,6 @@ $("#citySearch").on("click", function (e) {
 
     //calling the function to displayWeather and run ajax calls
     displayWeather(cityName);
-
     //calling the function that stores cities into localStorage 
     storeCityName();
     //invoking the function that renders the button list
@@ -95,6 +94,16 @@ function retrieveCityWeather() {
 
     })
 };
+//event listener for clear button to clear the saved cities out of local storage
+//function clearSavedCities() {
+$(".clear-btn").on("click", function (e) {
+    e.preventDefault();
+    localStorage.clear();
+    $("#cityList").empty();
+    //storedCities();
+    //renderCityList();
+})
+
 
 
 function displayWeather(cityName) {
@@ -108,9 +117,7 @@ function displayWeather(cityName) {
     var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + apiKey;
 
 
-
-    //function that runs ajax call for weather summary for city
-
+    //ajax call for weather summary for city
     $.ajax({
 
         url: summaryURL,

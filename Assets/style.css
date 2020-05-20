@@ -19,3 +19,6 @@ a.navbar-item {
 .li{
     padding-bottom: 5px; 
 }
+.clear-btn{
+    float: right; 
+}
