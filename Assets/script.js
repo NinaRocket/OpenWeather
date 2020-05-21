@@ -100,9 +100,9 @@ $(".clear-btn").on("click", function (e) {
     e.preventDefault();
     localStorage.clear();
     $("#cityList").empty();
-    //storedCities();
-    //renderCityList();
-})
+    cityArray = [];
+
+});
 
 
 
@@ -196,15 +196,6 @@ function displayWeather(cityName) {
                     method: "GET"
                 }).then(function (p) {
 
-                    // function timeConverter(UNIX_timestamp) {
-                    //     var a = new Date(UNIX_timestamp * 1000);
-                    //     var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-                    //     var year = a.getFullYear();
-                    //     var month = months[a.getMonth()];
-                    //     var date = a.getDate();
-                    //     var time = month + ' / ' + date + ' / ' + year;
-                    //     return time;
-                    // }
 
                     //empties the forecast tiles to display next city forecast without concatenating them
                     $("#forecast").empty();
@@ -216,6 +207,8 @@ function displayWeather(cityName) {
 
                         //variable to get the date for each day
                         var weathDate = p.list[forecastArray].dt_txt;
+                        weathDate = weathDate.split(" ")[0];
+
 
                         //variable to target div in html
                         var forecastTiles = $("#forecast");
@@ -228,6 +221,7 @@ function displayWeather(cityName) {
                         var dateTag = $("<p class = 'title is-6'>").text(weathDate);
                         //append the date to the tiles
                         (fcArticle).append(dateTag);
+                        console.log(weathDate);
 
                         //variable for weather icon
                         var forecasticonCode = p.list[forecastArray].weather[0].icon;
