@@ -205,10 +205,10 @@ function displayWeather(cityName) {
                     //for loop to iterate through array and grab the indices that are noon time for 5 subsequent days
                     for (forecastArray = 2; forecastArray < 35; forecastArray += 8) {
 
-                        //variable to get the date for each day
-                        var weathDate = p.list[forecastArray].dt_txt;
+                        //variable to get the date for each day, moment function applied for formatting
+                        var weathDate = moment(p.list[forecastArray].dt_txt).format("MM-DD-YYYY");
+                        //cuts off the time that is pulled from dt_txt response
                         weathDate = weathDate.split(" ")[0];
-
 
                         //variable to target div in html
                         var forecastTiles = $("#forecast");
@@ -221,7 +221,7 @@ function displayWeather(cityName) {
                         var dateTag = $("<p class = 'title is-6'>").text(weathDate);
                         //append the date to the tiles
                         (fcArticle).append(dateTag);
-                        console.log(weathDate);
+
 
                         //variable for weather icon
                         var forecasticonCode = p.list[forecastArray].weather[0].icon;
