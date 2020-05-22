@@ -27,3 +27,10 @@ Here is the current conditions dashboard that displays the city, today's date, a
  ![userexperiencegif](/Assets/images/WeatherForecast.gif)
 
 
+ <br>
+
+ The web application is responsive as seen in the gif example below:
+
+ ![responsiveness](/Assets/images/responsiveness.gif)
+
+
