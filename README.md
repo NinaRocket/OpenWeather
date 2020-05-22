@@ -8,15 +8,15 @@ In this web application, the user is able to input a city name in the search bar
 
 Here is what the page will look like the first time the user visits:
 
-![weatherdashboardunsaved](/assets/images/firstvisit.png)
+![weatherdashboardunsaved](./assets/images/firstvisit.png)
 
 Here is the current conditions dashboard that displays the city, today's date, a weather icon of the current condition, the temperature, humidity, wind speed and UV Index. The UV Index will display a smiling green emoji if it is between 0 and 2, a yellow straight faced emoji if between 3 and 5, a orange sad face if between 6 and 7 and a red sad face if the index is 8 or higher. Below is showing San Diego with a high UV index.
 
- ![dashboard](/assets/images/dashboard.png)
+ ![dashboard](./assets/images/dashboard.png)
 
  When the user enters a city, it is saved to local storage and is clickable at a later time to retrieve the current conditions and weather forecast for that city again:
 
- ![savedcities](/assets/images/savedcities.png)
+ ![savedcities](./assets/images/savedcities.png)
 
 <br>
 
@@ -24,6 +24,6 @@ Here is the current conditions dashboard that displays the city, today's date, a
 
 <br>
 
- ![userexperiencegif](/assets/images/WeatherForecast.gif)
+ ![userexperiencegif](./assets/images/WeatherForecast.gif)
 
 
