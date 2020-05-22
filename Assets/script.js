@@ -132,7 +132,7 @@ function displayWeather(cityName) {
             //variable to store icon code
             var iconCode = response.weather[0].icon;
             //url for the weather icon
-            var iconURL = "https://openweathermap.org/img/w/" + iconCode + ".png";
+            var iconURL = "http://openweathermap.org/img/w/" + iconCode + ".png";
             $("#wIcon").attr("src", iconURL);
 
             //variable to hold temperature, plus math for F
