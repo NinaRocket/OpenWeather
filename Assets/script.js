@@ -132,7 +132,7 @@ function displayWeather(cityName) {
             //variable to store icon code
             var iconCode = response.weather[0].icon;
             //url for the weather icon
-            var iconURL = "http://openweathermap.org/img/w/" + iconCode + ".png";
+            var iconURL = "https://openweathermap.org/img/w/" + iconCode + ".png";
             $("#wIcon").attr("src", iconURL);
 
             //variable to hold temperature, plus math for F
@@ -154,7 +154,7 @@ function displayWeather(cityName) {
             var cityLong = response.coord.lon;
             var cityLat = response.coord.lat;
             //url we need to query UV index by coordinates
-            var uvURL = "http://api.openweathermap.org/data/2.5/uvi?appid=" + apiKey + "&lat=" + cityLat + "&lon=" + cityLong;
+            var uvURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + apiKey + "&lat=" + cityLat + "&lon=" + cityLong;
             //nested ajax request for UV index using coordinates from above ajax call
             $.ajax({
 
