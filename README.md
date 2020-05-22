@@ -1,47 +1,29 @@
-# OpenWeather
-# 06 Server-Side APIs: Weather Dashboard
 
-Developers are often tasked with retrieving data from another application's API and using it in the context of their own. Third-party APIs allow developers to access their data and functionality by making requests with specific parameters to a URL. Your challenge is to build a weather dashboard that will run in the browser and feature dynamically updated HTML and CSS.
+<h1>Weather Dashboard</h1>
+Welcome to this weather dashboard powered by the 
 
-Use the [OpenWeather API](https://openweathermap.org/api) to retrieve weather data for cities. The documentation includes a section called "How to start" that will provide basic setup and usage instructions. Use `localStorage` to store any persistent data.
+ [OpenWeather API](https://openweathermap.org/api).
 
-## User Story
+In this web application, the user is able to input a city name in the search bar to see the current weather conditions in the city as well as a 5-Day forecast for that city! 
 
-```
-AS A traveler
-I WANT to see the weather outlook for multiple cities
-SO THAT I can plan a trip accordingly
-```
+Here is what the page will look like the first time the user visits:
 
-## Acceptance Criteria
+![weatherdashboardunsaved](/assets/images/firstvisit.png)
 
-```
-GIVEN a weather dashboard with form inputs
-WHEN I search for a city
-THEN I am presented with current and future conditions for that city and that city is added to the search history
-WHEN I view current weather conditions for that city
-THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
-WHEN I view the UV index
-THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
-WHEN I view future weather conditions for that city
-THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity
-WHEN I click on a city in the search history
-THEN I am again presented with current and future conditions for that city
-WHEN I open the weather dashboard
-THEN I am presented with the last searched city forecast
-```
+Here is the current conditions dashboard that displays the city, today's date, a weather icon of the current condition, the temperature, humidity, wind speed and UV Index. The UV Index will display a smiling green emoji if it is between 0 and 2, a yellow straight faced emoji if between 3 and 5, a orange sad face if between 6 and 7 and a red sad face if the index is 8 or higher. Below is showing San Diego with a high UV index.
 
-The following image demonstrates the application functionality:
+ ![dashboard](/assets/images/dashboard.png)
 
-![weather dashboard demo](./Assets/06-server-side-apis-homework-demo.png)
+ When the user enters a city, it is saved to local storage and is clickable at a later time to retrieve the current conditions and weather forecast for that city again:
 
-## Review
+ ![savedcities](/assets/images/savedcities.png)
 
-You are required to submit the following for review:
+<br>
 
-* The URL of the deployed application.
+ There is also a clear all button that will clear the cities from the list as well as from local storage so that the user may create a new list if they choose to do so. Below is a gif showing how this weather dashboard application is used:
 
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
+<br>
 
-- - -
-© 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+ ![userexperiencegif](/assets/images/WeatherForecast.gif)
+
+
